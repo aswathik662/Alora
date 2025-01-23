@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <form method="post" action="{% url 'addhall' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label for="name">hall name</label>
+    <input type="text" name="name" placeholder="name" required> <br> <br>
+    <label for="location">location</label>
+    <input type="text" name="location" placeholder="location" required> <br> <br>
+    <label for="capacity">capacity</label>
+    <input type="text" name="capacity" placeholder="capacity" required> <br> <br>
+    <label for="price">price</label>
+    <input type="text" name="price" placeholder="price" required> <br> <br>
+    <label for="photo">photo</label>
+    <input type="file" name="photo" placeholder="file" required> <br> <br>
+    <label for="textarea">description</label>
+    <input type="text" name="description" placeholder="description" required> <br> <br>
+    <button type="submit">ADD</button>
+
+    
+</form>
+</body>
+</html>

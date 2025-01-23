@@ -14,7 +14,7 @@ class Halls(models.Model):
     location=models.CharField(max_length=200)
     capacity=models.IntegerField()
     price_per_day=models.DecimalField(max_digits=10,decimal_places=2)
-    photo_url=models.ImageField(upload_to='image/')
+    photo_url=models.FileField()
     hall_description=models.TextField(null=True,blank=True)
 
 class Events(models.Model):
@@ -25,7 +25,8 @@ class Events(models.Model):
     event_status=models.CharField(max_length=100)
 
 class Food(models.Model):
-    food_image=models.ImageField(upload_to='image/')
+    food_name=models.CharField(max_length=10,null=True)
+    food_image=models.FileField()
     food_price=models.DecimalField(max_digits=10,decimal_places=2)
 
 class Decoration(models.Model):

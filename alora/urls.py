@@ -22,14 +22,27 @@ from appname import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('resetpassword',views.password_reset_request,name='resetpassword'),
+    path('verifyotp',views.verify_otp,name='verifyotp'),
+    path('newpassword',views.set_new_password,name='newpassword'),
     path('',views.index),
     path('reg', views.register,name='reg'),
     path('log', views.log, name='log'),
     path('ho/', views.home,name='home'),
+
+
+
+
+
+
     path('ad/', views.ad,name='admin'),
     path('profile', views.profile,name='profile'),
     path('all', views.vu,name='all'),
     path('edit', views.edit,name='edit'),
+    path('view_hall',views.view_hall,name='hall'),
+    path('add_hall',views.add_hall,name='addhall'),
+    path('food',views.food,name='food'),
+    path('ad_fud',views.add_food,name='ad_fud'),
 ]
 
 if settings.DEBUG:

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        th,td{
+            border:2px solid black;
+        }
+        img{
+            height: 100px;
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <h1>FOOD DETAILS </h1>
+    <a href="{% url 'ad_fud' %}"><button>Add Food</button></a>
+    <table >
+        <tr>
+            <th>Food Name</th>
+            <th>image</th>
+            <th>Price</th>
+        </tr>
+        {% for x in data %}
+        <tr>
+            <td>{{x.food_name}}</td>
+            <td><img src="{{x.food_image.url}}" alt="i"></td>
+            <td>{{x.food_price}}</td>
+           
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+</body>
+</html>
+
+
+
