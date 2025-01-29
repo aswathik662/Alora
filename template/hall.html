@@ -5,6 +5,12 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
+        <style>
+             img{
+            width: 100px;
+            height: 100px;
+        }
+        </style>
     </head>
     <body>
         <div>
@@ -15,12 +21,16 @@
                     <th>Hall Name</th>
                     <th>Location</th>
                     <th>Price</th>
+                    <th>image</th>
+
+
                 </tr>
                 {% for x in data %}
                 <tr>
                     <td>{{x.hall_name}}</td>
                     <td>{{x.location}}</td>
                     <td>{{x.price_per_day}}</td>
+                    <td><img src="{{x.photo_url.url}}" alt="img"></td>
                    
                 </tr>
                 {% endfor %}

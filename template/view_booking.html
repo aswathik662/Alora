@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+         th,td{
+        border: 1px solid black;
+    }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>event date</th>
+            <th>status</th>
+            <th>hall name</th>
+            <th>location</th>
+            <th>booking date</th>
+            <th>photography</th>
+            <th>food</th>
+            <th>decoration</th>
+            <th>photography cost</th>
+            <th>total payment</th>
+            <th>payment status</th>
+        </tr>
+        {% for i in x %}
+        <tr>
+            <td>{{i.event_date}}</td> 
+            <td>{{ i.event_status }}</td>
+           <td>{{i.hall_id.hall_name}}</td>
+            <td>{{i.hall_id.location}}</td>
+            <td>{{i.booking_date}}</td> 
+            <td>{{i.photography}}</td> 
+             <td>{{i.food.food_name}}</td>
+            <td>{{i.decoration.decoration_name}}</td>
+            <td>{{i.photography_cost}}</td>
+            <td>{{i.total_payment}}</td>
+            <td>{{i.payment_status}}</td>
+        </tr>
+            {% endfor %}
+        </table>
+</body>
+</html>

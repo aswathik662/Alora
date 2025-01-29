@@ -43,6 +43,16 @@ urlpatterns = [
     path('add_hall',views.add_hall,name='addhall'),
     path('food',views.food,name='food'),
     path('ad_fud',views.add_food,name='ad_fud'),
+    path('viewd',views.decoration_details,name='viewd'),
+    path('addd',views.add_decoration,name='addd'),
+    path('log_out',views.log_out,name='log_out'),
+    path('book',views.booking,name='book'),
+    path('userviewbooking',views.user_view_booking,name='userviewbooking'),
+    path('adminviewbooking',views.admin_view_booking,name='adminviewbooking'),
+
+
+     path('ind',views.ind2),
+
 ]
 
 if settings.DEBUG:

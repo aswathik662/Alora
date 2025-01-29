@@ -2,6 +2,8 @@ from django.shortcuts import render,redirect
 from .models import *
 from django.http import HttpResponse
 from django.contrib.auth import logout,authenticate,login
+from django.contrib import auth
+from django.contrib.auth.decorators import login_required
 import random
 from django.core.mail import send_mail
 from django.contrib import messages
@@ -13,7 +15,7 @@ def send_otp(email):
     send_mail(
         'Your OTP Code',''
         f'Your OTP code is: {otp}',
-        'meethuprasanthkk@gmail.com',
+        'aswathikudayan@gmail.com',
         [email],
         fail_silently=False,
     )
@@ -120,6 +122,11 @@ def log(request):
     
     else:
        return render(request,'login.html')
+def log_out(request):
+    auth.logout(request)
+    context = {'success_message': 'You have been logged out successfully.'}
+    return redirect(log)
+
 
 def home(request):
    return render(request,'home.html')
@@ -144,6 +151,71 @@ def edit(request):
     else:
         return render(request,'edituser.html',{'data':user})
 
+
+def booking(request):
+    data=User.objects.get(id=request.user.id)
+    halls=Halls.objects.all()
+    foods=Food.objects.all()
+    decorations=Decoration.objects.all()
+    if request.method == 'POST':
+        eventdate=request.POST['date']
+        hall=request.POST['hall']
+        food=request.POST['f']
+        food_id=request.POST.get('food')
+        no_of_people=request.POST['people_num']
+        photography=request.POST['photography']
+        decoration=request.POST['decoration']
+        decoration_id=request.POST.get('decoration_model')
+        check_date=Bookings.objects.filter(hall_id=hall,event_date=eventdate).exists()
+        if check_date:
+            return HttpResponse('hall already booked!')
+        if food == "yes":
+            food=True
+        else:
+            food=False
+        if decoration == "yes":
+            decoration=True
+        else:
+            decoration=False
+        if no_of_people == "":
+            no_of_people=0
+        no_of_people=int(no_of_people)
+        hall_amount=0
+        food_amount=0
+        photography_amount=0
+        decoration_amount=0
+        t_amount=0
+        h=Halls.objects.get(id=hall)
+        hall_amount=h.price_per_day
+        f=None
+        d=None
+        if food_id:
+            f=Food.objects.get(id=food_id)
+            food_amount=no_of_people*f.food_price
+        if photography == 'yes':
+            photography_amount=10000
+        if decoration_id:
+            d=Decoration.objects.get(id=decoration_id)
+            decoration_amount=d.decoration_price
+        t_amount=hall_amount+photography_amount+decoration_amount+food_amount
+        if food_id and decoration_id :
+            obj=Bookings.objects.create(event_date=eventdate,user_id=data,hall_id=h,photography=photography,food_value=food,food=f,no_of_people=no_of_people,decoration_value=decoration,decoration=d,photography_cost=photography_amount,total_payment=t_amount)
+            obj.save()
+        else:
+            obj=Bookings.objects.create(event_date=eventdate,user_id=data,hall_id=h,photography=photography,food_value=food,no_of_people=no_of_people,decoration_value=decoration,photography_cost=photography_amount,total_payment=t_amount)
+            obj.save()
+        return redirect(user_view_booking)
+    else:
+        return render(request,'booking.html',{'data':halls,'foods':foods,'decoration':decorations})
+    
+def user_view_booking(request):
+    user=User.objects.get(id=request.user.id)
+    booking=Bookings.objects.filter(user_id=user)
+    for i in booking:
+        print(i.event_status)
+    return render(request,'view_booking.html',{'x':booking})
+
+ 
 # admin....................................................
 def ad(request):
    return render(request,'admin.html')
@@ -184,6 +256,34 @@ def add_food(request):
     else:
         return render(request,'add_food.html')
     
+def decoration_details(request):
+    data=Decoration.objects.all()
+    return render(request,'decoration_details.html',{'data':data})
+def add_decoration(request):
+    if request.method == 'POST':
+        name=request.POST['name']
+        price=request.POST['price']
+        image=request.FILES['image']
+        obj=Decoration.objects.create(decoration_name=name,decoration_price=price,decoration_image=image)
+        obj.save()
+        return redirect(decoration_details)
+    return render(request,'add_decoration.html')
+
+def admin_view_booking(request):
+    book=Bookings.objects.all()
+    return render(request,'admin_booking.html',{'data':book})
+
+# def accept_rej(request):
+#     if request.method=='POST':
+        
+
+
+
+# *design********
+def ind2(req):
+    return render(req,'dindex.html')
+
+
 
 
 
