@@ -121,6 +121,10 @@ EMAIL_HOST_USER = 'aswathikudayan@gmail.com'
 EMAIL_HOST_PASSWORD = 'gnlt ictd cjnp qxog'
 DEFAULT_FROM_EMAIL = 'aswathikudayan@gmail.com'
 
+
+STRIPE_SECRET_KEY = 'sk_test_51QmUfuP6MRLO3T4fz3MqJjsSScse5nvF5dt3LHu7cjlWvflDwybOVxG4P93RGT1dKtRipEaZUEvk9QrGUi0kgsd2008ItAZOqp'
+STRIPE_PUBLISHABLE_KEY = 'pk_test_51QmUfuP6MRLO3T4frkOk0vCuqheuFyEgEaAxaGzY25ilsapy2FIicmEsQa5nXDj2o5liAjlU0Mqhi52WBvy9DfaW00heDplbMF'
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 

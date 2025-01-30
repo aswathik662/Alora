@@ -36,7 +36,8 @@
             <td>{{x.decoration.decoration_name}} <br> {{x.decoration.decoration_price}}</td>
             <td>{{x.total_payment}}</td>
             <td>
-                <form action="">
+                <form action="{% url 'acceptrejectbooking' id=x.id %}" method="post">
+                    {% csrf_token %}
                     {% if x.event_status == 'pending' %}
                     <input type="submit" value="Accept" name="Status">
                     <input type="submit" value="Reject" name="Status">

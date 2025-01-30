@@ -12,10 +12,10 @@
 .topleft {
   position: absolute;
   top: 8px;
-  left: 16px;
+  left: 20px;
   font-size: 18px;
-  color: white;
-  background-color: black;
+  color: black;
+  font-weight: bold;
 }
     </style>
 </head>
@@ -23,7 +23,7 @@
     <form action="{% url 'book' %}" method="POST" >
         {% csrf_token %}
         <label for="date">Select Date:</label>
-        <input type="date" name="date" required><br><br>
+        <input type="date" id="date" name="date" min="" required><br><br>
         <label for="data">Halls:</label>
         {% for i in data %}
         <label>
@@ -70,10 +70,14 @@
             </div>
           </div>
         {% endfor %}<br><br>
-        
         <label for="customization">customization:</label>
         <input type="text" name="customization" placeholder="color theme"><br><br>
         <button type="submit">Book</button>
     </form>
+
+
+    <script>
+        document.getElementById("date").min = new Date().toISOString().split("T")[0];
+    </script>
 </body>
 </html>

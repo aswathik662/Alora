@@ -49,6 +49,8 @@ urlpatterns = [
     path('book',views.booking,name='book'),
     path('userviewbooking',views.user_view_booking,name='userviewbooking'),
     path('adminviewbooking',views.admin_view_booking,name='adminviewbooking'),
+    path('acceptrejectbooking/<int:id>',views.accept_reject_booking,name='acceptrejectbooking'),
+    # path('payment_status/<int:id>',views.stripe_payments,name='payment_status'),
 
 
      path('ind',views.ind2),
